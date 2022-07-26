@@ -1,0 +1,49 @@
+/* Page */
+body {
+    font-family: 'Rubik', sans-serif;
+}
+
+/* Navigation */
+.navbar {
+    padding: 20px;
+    font-size: 20px;
+    background-color: #97e1f7;
+}
+
+/* Containers & Content */
+.container {
+    max-width: 90%;
+    background-color: white;
+    padding: 0px;
+}
+
+.container h1 {
+    background-color: #97e1f7;
+    padding: 15px;
+    margin-bottom: 0;
+    text-align: center;
+}
+
+.content {
+    padding: 30px;
+}
+
+.recipes .form-control {
+    width: 25%;
+    display: inline-block;
+}
+
+.list-group {
+    margin-bottom: 1%;
+    max-height: 500px;
+    overflow: scroll;
+}
+
+.list-group-flush > .list-group-item {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.list-group-item p {
+    font-size: 17px;
+}

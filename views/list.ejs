@@ -1,0 +1,17 @@
+<% layout('layouts/base')%>
+
+<div class="container mt-4 mb-4 shadow">
+    <h1>Grocery List</h1>
+    <div class="content">
+        <ul class="list-group list-group-flush">
+            <% for(let grocery of list.recipes) { %>
+            <li class="list-group-item">
+                <% grocery %>
+            </li>
+            <% } %>
+        </ul>
+        <form class="form-inline">
+            <button type="button" id="openNewModal" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">New Recipe</button>
+        </form> 
+    </div>
+</div>

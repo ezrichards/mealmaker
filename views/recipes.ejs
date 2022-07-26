@@ -1,0 +1,127 @@
+<% layout('layouts/base')%>
+
+<div class="modal" id="newModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Add New Recipe</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" novalidate class="validated-form" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label class="form-label" for="title">Title</label>
+                        <input class="form-control" type="text" id="title" name="title" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="description">Description</label>
+                        <textarea class="form-control" type="text" id="description" name="description" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="description">URL</label>
+                        <textarea class="form-control" type="text" id="url" name="url" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="description">Notes</label>
+                        <textarea class="form-control" type="text" id="notes" name="notes" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="description">Ingredients</label>
+                        <textarea class="form-control" type="text" id="ingredients" name="ingredients" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <button class="btn btn-primary" id="closeNewModal" data-dismiss="modal">Add Recipe</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>  
+</div>
+
+<div class="modal" id="editModal" tabindex="-2" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Edit Recipe</h5>
+            <!-- TODO button not closing -->
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" novalidate class="validated-form" enctype="multipart/form-data" id="editForm">
+                    <div class="mb-3">
+                        <label class="form-label" for="title">Title</label>
+                        <input class="form-control" type="text" id="editTitle" name="title" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="description">Description</label>
+                        <textarea class="form-control" type="text" id="editDescription" name="description" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="description">URL</label>
+                        <textarea class="form-control" type="text" id="editUrl" name="url" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="description">Notes</label>
+                        <textarea class="form-control" type="text" id="editNotes" name="notes" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="description">Ingredients</label>
+                        <textarea class="form-control" type="text" id="editIngredients" name="ingredients" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <button class="btn btn-primary" id="closeEditModal" data-dismiss="modal">Edit Recipe</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>  
+</div>
+
+<div class="container mt-4 mb-4 shadow">
+    <h1>Recipes</h1>
+    <div class="content">
+        <ul class="list-group list-group-flush">
+            <% for(let recipe of recipes) { %>
+            <li class="list-group-item">
+                <h2><%= recipe.name %>
+                    <div class="form-inline" style="float: right;">
+                        <% if(recipe.favorite) { %>
+                        <form action="/recipes/<%=recipe._id%>?_method=PUT" method="POST" style="display: inline-block;">
+                            <button class="btn btn-outline-success">
+                                <i class="bi bi-star-fill"></i>
+                            </button>
+                        </form>
+                        <% } else { %>
+                        <form action="/recipes/<%=recipe._id%>?_method=PUT" method="POST" style="display: inline-block;">
+                            <button class="btn btn-outline-success">
+                                <i class="bi bi-star"></i>
+                            </button>
+                        </form>
+                        <% } %>
+                        <button class="btn btn-outline-warning" onclick="handleEdit('<%=recipe._id%>')">
+                            <i class="bi bi-pencil"></i>
+                        </button>
+                        <form action="/recipes/<%=recipe._id%>?_method=DELETE" method="POST" style="display: inline-block;">
+                            <button class="btn btn-outline-danger">
+                                <i class="bi bi-trash3"></i>
+                            </button>
+                        </form>
+                    </form>
+                </h2>
+                <p><%= recipe.directions %></p>
+                <% if(recipe.ingredients != "") { %>
+                    <p>Ingredients: <%= recipe.ingredients %></p>
+                <% } %>
+                <a href="<%= recipe.url %>" target="_blank"><%= recipe.url %></a>
+            </li>
+            <% } %>
+        </ul>
+        <form class="form-inline">
+            <button type="button" id="openNewModal" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">New Recipe</button>
+        </form> 
+    </div>
+</div>

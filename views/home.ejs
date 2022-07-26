@@ -1,0 +1,29 @@
+<% layout('layouts/base')%>
+
+<div class="container mt-4 mb-4">
+    <h1>Favorite Recipes</h1>
+    <div class="content">
+        <ul class="list-group list-group-flush">
+            <% for(let recipe of recipes) { %>
+            <li class="list-group-item">
+                <% if(recipe.favorite) { %>
+                <h2><%= recipe.name %></h2>
+                <p><%= recipe.directions %></p>
+                <% if(recipe.ingredients != "") { %>
+                <p>Ingredients: <%= recipe.ingredients %></p>
+                <% } %>
+                <a href="<%= recipe.url %>" target="_blank"><%= recipe.url %></a>
+                <% } %>
+            </li>
+            <% } %>
+        </ul>
+    </div>
+</div>
+
+<div class="container mt-4 mb-4">
+    <h1>Grocery List</h1>
+
+    <% for(let list of groceryList) { %>
+        <p><%= list %></p>
+    <% } %>
+</div>
