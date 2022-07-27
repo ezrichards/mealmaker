@@ -1,17 +1,47 @@
 <% layout('layouts/base')%>
 
+<div class="modal" id="newItemModal" tabindex="-3" role="dialog" aria-labelledby="addItemLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="addItemLabel">Add Item</h5>
+            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                <form action="/list" method="POST">
+                    <div class="mb-3">
+                        <label class="form-label" for="title">Grocery</label>
+                        <input class="form-control" type="text" id="grocery" name="grocery" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="description">Amount</label>
+                        <input class="form-control" type="number" id="amount" name="amount" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <button class="btn btn-primary" id="closeNewItemModal">Add Item</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>  
+</div>
+
 <div class="container mt-4 mb-4 shadow">
     <h1>Grocery List</h1>
     <div class="content">
         <ul class="list-group list-group-flush">
-            <% for(let grocery of list.recipes) { %>
+            <% for(let list of groceryList.list) { %>
             <li class="list-group-item">
-                <% grocery %>
+                <p><%= list.amount %>x, <%= list.ingredient %></p>
             </li>
             <% } %>
         </ul>
-        <form class="form-inline">
-            <button type="button" id="openNewModal" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">New Recipe</button>
+        <button type="button" id="openNewItemModal" class="btn btn-primary" data-toggle="modal" data-target="#newItemModal">New Item</button>
+        <form action="/list?_method=DELETE", method="POST" style="display: inline-block;">
+            <button type="submit" class="btn btn-primary">Clear</button>
         </form> 
     </div>
 </div>
+<script src="/scripts/grocerylist.js"></script>

@@ -3,8 +3,6 @@ A simple web app built with [ExpressJS](https://expressjs.com), [NodeJS](https:/
 
 This project stack and structure is based off of [YelpCamp](https://github.com/Colt/YelpCamp/), a project from an online course I did many years back.
 
-This is a work in progress. Styles are still being improved as well as "Grocery List" functionality.
-
 ## Potential Improvements
 There are a few different ways this application could be improved in the future.
 - "Recipe finder from owned ingredients" feature: given owned ingredients, see what recipes "match" closely.

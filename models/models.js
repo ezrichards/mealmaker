@@ -12,9 +12,6 @@ const RecipeSchema = new Schema({
     url: {
         type: String,
     },
-    notes: {
-        type: String,
-    },
     ingredients: [{
         amount: String,
         type: String
@@ -29,8 +26,7 @@ const GroceryListSchema = new Schema({
     list: [{
         amount: Number,
         ingredient: String
-    }],
-    recipes: [RecipeSchema],
+    }]
 });
 
 module.exports = {

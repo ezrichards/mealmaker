@@ -40,7 +40,6 @@ module.exports.updateRecipe = async(req, res) => {
     if(req.body.url) {
         recipe.url = req.body.url;
     }
-    recipe.notes = req.body.notes;
     await recipe.save();
     res.redirect('/recipes');
 }
